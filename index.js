@@ -1,9 +1,11 @@
+const functions = require('firebase-functions');
 const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
+
 
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
@@ -12,4 +14,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = app;
+exports.app = functions.https.onRequest(app);
