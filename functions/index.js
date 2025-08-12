@@ -1,21 +1,13 @@
-const { setGlobalOptions } = require("firebase-functions");
-const { onRequest } = require("firebase-functions/https");
-const express = require("express");
-
-// Optional: control max instances (for cost control)
-setGlobalOptions({ maxInstances: 10 });
-
-// Create Express app
+const functions = require('firebase-functions');
+const express = require('express');
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World from Firebase Functions!");
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
-// Add more routes if you want
-app.get("/about", (req, res) => {
-  res.json({ message: "This is the about page" });
-});
+// Export Express app for testing
+module.exports = app;
 
-// Export your Express app as a Firebase Function named 'api'
-exports.api = onRequest(app);
+// Export Firebase function (make sure the name matches your firebase.json rewrites)
+exports.api = functions.https.onRequest(app);
