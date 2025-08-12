@@ -14,4 +14,4 @@ if (require.main === module) {
   });
 }
 
-exports.app = functions.https.onRequest(app);
+exports.helloWorld = functions.https.onRequest(app);
