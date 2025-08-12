@@ -29,9 +29,11 @@ jobs:
       - name: Build (if applicable)
         run: npm run build --if-present
 
-      # Run your tests
+      - name: Fix jest permission
+        run: chmod +x ./node_modules/.bin/jest
+
       - name: Run tests
-        run: npm test
+        run: npx jest --no-cache
 
       # Install Firebase CLI
       - name: Install Firebase CLI
